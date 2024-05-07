@@ -1,4 +1,4 @@
-
+﻿
 ProxyPool 爬虫代理IP池
 =======
 [![Build Status](https://travis-ci.org/jhao104/proxy_pool.svg?branch=master)](https://travis-ci.org/jhao104/proxy_pool)
@@ -91,6 +91,50 @@ python proxyPool.py schedule
 python proxyPool.py server
 
 ```
+
+
+# 关于 Py 312 报错的问题解决：
+1. from imp import reload as reload_six
+ModuleNotFoundError: No module named 'imp'
+解决方法：if PY3:
+import importlib
+reload_six = importlib.reload
+else:
+reload_six = reload
+
+2. from collections import MutableMapping
+ImportError: cannot import name 'MutableMapping' from 'collections'
+解决方法：from collections.abc import MutableMapping
+
+3. from collections import Iterable, Mapping
+ImportError: cannot import name 'Iterable' from 'collections'
+解决方法：from collections.abc import Iterable, Mapping
+
+4. from .packages.six.moves.http_client import (
+ModuleNotFoundError: No module named 'urllib3.packages.six.moves'
+解决方法：更新urllib3包到最新版本
+
+处理完这些问题 python proxyPool.py schedule 就正常启动了。
+-------------------------------------------------------------------------------
+
+* 执行 python proxyPool.py server 也会报好多错：
+
+1.from jinja2 import Markup, escape
+ImportError: cannot import name 'Markup' from 'jinja2'
+解决方法：改成 from jinja2 import pass_eval_context
+from markupsafe import Markup, escape
+
+2.from itsdangerous import json as _json
+ImportError: cannot import name 'json' from 'itsdangerous'
+解决方法：改成 import json as _json
+
+3.from collections import MutableMapping
+ImportError: cannot import name 'MutableMapping' from 'collections'
+解决方法：改成 from collections.abc import MutableMapping
+
+然后就可以 get 到 代理地址 了
+
+
 
 ### Docker Image
 
