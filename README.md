@@ -114,10 +114,10 @@ ImportError: cannot import name 'Iterable' from 'collections'
 ModuleNotFoundError: No module named 'urllib3.packages.six.moves'
 解决方法：更新urllib3包到最新版本
 
-处理完这些问题 python proxyPool.py schedule 就正常启动了。
+### 处理完这些问题 python proxyPool.py schedule 就正常启动了。
 -------------------------------------------------------------------------------
 
-* 执行 python proxyPool.py server 也会报好多错：
+*** 执行 python proxyPool.py server 也会报好多错： ***
 
 1.from jinja2 import Markup, escape
 ImportError: cannot import name 'Markup' from 'jinja2'
@@ -132,7 +132,7 @@ ImportError: cannot import name 'json' from 'itsdangerous'
 ImportError: cannot import name 'MutableMapping' from 'collections'
 解决方法：改成 from collections.abc import MutableMapping
 
-然后就可以 get 到 代理地址 了
+## 然后就可以 get 到 代理地址 了
 
 
 
